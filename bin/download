@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# [ -z "${ASDF_INSTALL_VERSION+x}" ] && echo "ASDF_INSTALL_VERSION is required" && exit 1
+
+github_repo="https://github.com/google/go-containerregistry/releases"
+
+_download() {
+    local _version="$1"
+    local _bin_install_path=$2
+    local _artifact="go-containerregistry_Linux_x86_64.tar.gz"
+    
+    local download_url="$github_repo/download/v${_version}/$_artifact"
+
+    curl -Lo "$_bin_install_path/$_artifact" "$download_url"
+}
+
+_download "$ASDF_INSTALL_VERSION" "$ASDF_DOWNLOAD_PATH"
