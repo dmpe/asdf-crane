@@ -40,4 +40,4 @@ jobs:
         uses: asdf-vm/actions/plugin-test@master
         with:
           command: crane version
-          asdf_branch: ${{ github.ref_name }}
+          asdf_branch: 1-improvements
