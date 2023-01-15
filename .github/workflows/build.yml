@@ -15,13 +15,15 @@ jobs:
       image: ${{ matrix.container }}
     strategy:
       matrix:
-        container: ["ubuntu:latest", "fedora:rawhide"]
+        container:
+          - ubuntu:latest
+          - fedora:rawhide
     steps:
       - name: asdf_plugin_test
         uses: asdf-vm/actions/plugin-test@master
         with:
           command: crane version
-          asdf_branch: ${{ vars.GITHUB_HEAD_REF }}
+          asdf_branch: ${{ github.head_ref }}
 
   plugin_test_os:
     name: asdf plugin test (on OS)
@@ -36,4 +38,4 @@ jobs:
         uses: asdf-vm/actions/plugin-test@master
         with:
           command: crane version
-          asdf_branch: ${{ vars.GITHUB_HEAD_REF }}
+          asdf_branch: ${{ github.head_ref }}
