@@ -4,15 +4,29 @@ on:
   push:
     branches:
       - master
+      - main
   pull_request:
 
 jobs:
-  plugin_test:
-    name: asdf plugin test
+  plugin_test_containers:
+    name: asdf plugin test (on containers)
     strategy:
       matrix:
-        os:
-          - ubuntu-latest
+        containers:
+          - ubuntu:latest
+          - fedora:latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: asdf_plugin_test
+        uses: asdf-vm/actions/plugin-test@v1
+        with:
+          command: crane version
+
+  plugin_test_os:
+    name: asdf plugin test (on OS)
+    strategy:
+      matrix:
+        containers:
           - macos-latest
           - windows-latest
     runs-on: ${{ matrix.os }}
@@ -20,4 +34,4 @@ jobs:
       - name: asdf_plugin_test
         uses: asdf-vm/actions/plugin-test@v1
         with:
-          command: <TOOL CHECK>
+          command: crane version
