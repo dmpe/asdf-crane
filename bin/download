@@ -16,7 +16,7 @@ _download() {
 
   local download_url="$GH_REPO/releases/download/v${_version}/$_artifact"
 
-  curl -Lo "$_bin_install_path/$_artifact" "$download_url" || fail "Could not download $url"
+  curl -Lo "$_bin_install_path/$_artifact" "$download_url" || fail "Could not download $download_url"
 }
 
 _download "$ASDF_INSTALL_VERSION" "$ASDF_DOWNLOAD_PATH"
