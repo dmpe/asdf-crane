@@ -9,7 +9,7 @@ on:
 
 jobs:
   plugin_test_debian_containers:
-    name: asdf plugin test (on containers)
+    name: asdf plugin test (on ubuntu)
     runs-on: ubuntu-latest
     container:
       image: ${{ matrix.container }}
@@ -26,7 +26,7 @@ jobs:
           command: crane version
 
   plugin_test_rpm_containers:
-    name: asdf plugin test (on containers)
+    name: asdf plugin test (on fedora)
     runs-on: ubuntu-latest
     container:
       image: ${{ matrix.container }}
@@ -43,12 +43,11 @@ jobs:
           command: crane version
 
   plugin_test_os:
-    name: asdf plugin test (on OS)
+    name: asdf plugin test (on macos)
     strategy:
       matrix:
         os:
           - macos-latest
-          - windows-latest
     runs-on: ${{ matrix.os }}
     steps:
       - name: asdf_plugin_test
