@@ -1,25 +1,29 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
 set -euo pipefail
 
 [ -z "${ASDF_INSTALL_TYPE+x}" ] && echo "ASDF_INSTALL_TYPE is required" && exit 1
 [ -z "${ASDF_INSTALL_VERSION+x}" ] && echo "ASDF_INSTALL_VERSION is required" && exit 1
 [ -z "${ASDF_INSTALL_PATH+x}" ] && echo "ASDF_INSTALL_PATH is required" && exit 1
 
+current_script_path=${BASH_SOURCE[0]}
+plugin_dir=$(dirname "$(dirname "$current_script_path")")
+
+# shellcheck source=../lib/utils.bash
+source "${plugin_dir}/lib/utils.bash"
+
 _install_crane() {
   local _install_type=$1
   local _version=$2
   local _install_path=$3
-  local _artifact="go-containerregistry_Linux_x86_64.tar.gz"
+  local _artifact="go-containerregistry_${PLATFORM}_${ARCH}.tar.gz"
 
   echo "Creating bin directory"
   mkdir -p "${_install_path}/bin"
-  
+
   echo "Unpacking crane to bin directory"
   tar -C "${_install_path}/bin" -zxf "${ASDF_DOWNLOAD_PATH}/${_artifact}" crane
-  
-  chmod +x ${_install_path}/bin
+
+  chmod +x "${_install_path}"/bin
 }
 
 _install_crane "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH"
-
