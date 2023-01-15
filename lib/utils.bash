@@ -5,8 +5,8 @@ set -euo pipefail
 GH_REPO="https://github.com/google/go-containerregistry"
 GH_API_REPO="https://api.github.com/repos/google/go-containerregistry"
 
-TOOL_NAME="<YOUR TOOL>"
-TOOL_TEST="<TOOL CHECK>"
+TOOL_NAME="crane"
+TOOL_TEST="version"
 
 fail() {
   echo -e "asdf-$TOOL_NAME: $*"
