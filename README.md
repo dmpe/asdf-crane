@@ -6,6 +6,13 @@
 
 ```
 asdf plugin-add crane https://github.com/dmpe/asdf-crane.git
+asdf install
+```
+
+## Develop
+
+```
+export GITHUB_API_TOKEN=...
 ```
 
 ## Use
