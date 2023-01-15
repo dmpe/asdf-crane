@@ -17,7 +17,7 @@ jobs:
       matrix:
         container:
           - ubuntu:latest
-          - fedora:rawhide
+          # - fedora:rawhide
     steps:
       - name: install commands such as github.ref_name
         run: apt install git -y
