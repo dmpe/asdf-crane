@@ -36,7 +36,7 @@ jobs:
           - fedora:rawhide
     steps:
       - name: install commands such as git and curl
-        run: dnf update && dnf install -y git curl
+        run: dnf update -y && dnf install -y git curl
       - name: asdf_plugin_test
         uses: asdf-vm/actions/plugin-test@master
         with:
