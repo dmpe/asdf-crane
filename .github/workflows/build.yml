@@ -25,7 +25,6 @@ jobs:
         uses: asdf-vm/actions/plugin-test@master
         with:
           command: crane version
-          asdf_branch: ${{ github.ref_name }}
 
   plugin_test_os:
     name: asdf plugin test (on OS)
@@ -40,4 +39,3 @@ jobs:
         uses: asdf-vm/actions/plugin-test@master
         with:
           command: crane version
-          asdf_branch: 1-improvements
