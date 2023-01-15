@@ -10,13 +10,13 @@ plugin_dir=$(dirname "$(dirname "$current_script_path")")
 source "${plugin_dir}/lib/utils.bash"
 
 _download() {
-    local _version="$1"
-    local _bin_install_path=$2
-    local _artifact="go-containerregistry_Linux_x86_64.tar.gz"
+  local _version="$1"
+  local _bin_install_path=$2
+  local _artifact="go-containerregistry_Linux_x86_64.tar.gz"
 
-    local download_url="$GH_REPO/releases/download/v${_version}/$_artifact"
+  local download_url="$GH_REPO/releases/download/v${_version}/$_artifact"
 
-    curl -Lo "$_bin_install_path/$_artifact" "$download_url"
+  curl -Lo "$_bin_install_path/$_artifact" "$download_url"
 }
 
 _download "$ASDF_INSTALL_VERSION" "$ASDF_DOWNLOAD_PATH"
