@@ -10,23 +10,24 @@ on:
 jobs:
   plugin_test_containers:
     name: asdf plugin test (on containers)
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ matrix.container }}
     strategy:
       matrix:
-        containers:
-          - ubuntu:latest
-          - fedora:latest
-    runs-on: ${{ matrix.os }}
+        container: ["ubuntu:latest", "fedora:rawhide"]
     steps:
       - name: asdf_plugin_test
         uses: asdf-vm/actions/plugin-test@v1
         with:
           command: crane version
+          asdf_branch: ${{ vars.GITHUB_HEAD_REF }}
 
   plugin_test_os:
     name: asdf plugin test (on OS)
     strategy:
       matrix:
-        containers:
+        os:
           - macos-latest
           - windows-latest
     runs-on: ${{ matrix.os }}
@@ -35,3 +36,4 @@ jobs:
         uses: asdf-vm/actions/plugin-test@v1
         with:
           command: crane version
+          asdf_branch: ${{ vars.GITHUB_HEAD_REF }}
