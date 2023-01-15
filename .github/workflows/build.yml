@@ -19,6 +19,8 @@ jobs:
           - ubuntu:latest
           - fedora:rawhide
     steps:
+      - name: install commands such as github.ref_name
+        run: apt install git -y
       - name: asdf_plugin_test
         uses: asdf-vm/actions/plugin-test@master
         with:
