@@ -2,11 +2,15 @@
 
 set -euo pipefail
 
+declare -g ARCH PLATFORM TOOL_TEST TOOL_NAME GH_API_REPO GH_REPO
+
 GH_REPO="https://github.com/google/go-containerregistry"
 GH_API_REPO="https://api.github.com/repos/google/go-containerregistry"
 
 TOOL_NAME="crane"
 TOOL_TEST="version"
+PLATFORM=$(uname | tr '[:upper:]' '[:lower:]')
+ARCH=$(uname -m)
 
 fail() {
   echo -e "asdf-$TOOL_NAME: $*"
@@ -25,17 +29,6 @@ sort_versions() {
     LC_ALL=C sort -t. -k 1,1 -k 2,2n -k 3,3n -k 4,4n -k 5,5n | awk '{print $2}'
 }
 
-download_release() {
-  local version filename url
-  version="$1"
-  filename="$2"
-
-  # TODO: Adapt the release URL convention for <YOUR TOOL>
-  url="$GH_REPO/archive/v${version}.tar.gz"
-
-  echo "* Downloading $TOOL_NAME release $version..."
-  curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
-}
 
 install_version() {
   local install_type="$1"

@@ -8,7 +8,7 @@ on:
   pull_request:
 
 jobs:
-  plugin_test_containers:
+  plugin_test_debian_containers:
     name: asdf plugin test (on containers)
     runs-on: ubuntu-latest
     container:
@@ -17,10 +17,26 @@ jobs:
       matrix:
         container:
           - ubuntu:latest
-          # - fedora:rawhide
     steps:
       - name: install commands such as github.ref_name
-        run: apt update && apt install git -y
+        run: apt update && apt install git curl -y
+      - name: asdf_plugin_test
+        uses: asdf-vm/actions/plugin-test@master
+        with:
+          command: crane version
+
+  plugin_test_rpm_containers:
+    name: asdf plugin test (on containers)
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ matrix.container }}
+    strategy:
+      matrix:
+        container:
+          - fedora:rawhide
+    steps:
+      - name: install commands such as github.ref_name
+        run: dnf update && dnf install git curl -y
       - name: asdf_plugin_test
         uses: asdf-vm/actions/plugin-test@master
         with:
