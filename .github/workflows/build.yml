@@ -18,7 +18,7 @@ jobs:
         container: ["ubuntu:latest", "fedora:rawhide"]
     steps:
       - name: asdf_plugin_test
-        uses: asdf-vm/actions/plugin-test@v1
+        uses: asdf-vm/actions/plugin-test@master
         with:
           command: crane version
           asdf_branch: ${{ vars.GITHUB_HEAD_REF }}
@@ -33,7 +33,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: asdf_plugin_test
-        uses: asdf-vm/actions/plugin-test@v1
+        uses: asdf-vm/actions/plugin-test@master
         with:
           command: crane version
           asdf_branch: ${{ vars.GITHUB_HEAD_REF }}
