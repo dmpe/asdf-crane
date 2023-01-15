@@ -15,7 +15,7 @@ _install_crane() {
   local _install_type=$1
   local _version=$2
   local _install_path=$3
-  local _artifact="go-containerregistry_Linux_x86_64.tar.gz"
+  local _artifact="go-containerregistry_${PLATFORM}_${ARCH}.tar.gz"
 
   echo "Creating bin directory"
   mkdir -p "${_install_path}/bin"
