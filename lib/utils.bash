@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-declare -g ARCH PLATFORM TOOL_TEST TOOL_NAME GH_API_REPO GH_REPO
 
 GH_REPO="https://github.com/google/go-containerregistry"
 GH_API_REPO="https://api.github.com/repos/google/go-containerregistry"
