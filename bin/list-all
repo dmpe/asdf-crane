@@ -11,6 +11,5 @@ plugin_dir=$(dirname "$(dirname "$current_script_path")")
 source "${plugin_dir}/lib/utils.bash"
 
 # find all: tag_name": "v0.x.x", releases, clean them up - at last sort
-versions=$(curl "${curl_opts[@]}" "${GH_API_REPO}/releases" | grep -oE "tag_name\": *\".{1,15}\"," | sed 's/tag_name\": *\"v//;s/\",//' | sort_versions)
+list_all_versions | sort_versions | xargs echo 
 
-echo "$versions"

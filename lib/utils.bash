@@ -17,10 +17,13 @@ fail() {
 
 curl_opts=(-fsSL)
 
-# NOTE: You might want to remove this if <YOUR TOOL> is not hosted on GitHub releases.
 if [ -n "${GITHUB_API_TOKEN:-}" ]; then
   curl_opts=("${curl_opts[@]}" -H "Authorization: token $GITHUB_API_TOKEN")
 fi
+
+list_all_versions() {
+  curl "${curl_opts[@]}" "${GH_API_REPO}/releases" | grep -oE "tag_name\": *\".{1,15}\"," | sed 's/tag_name\": *\"v//;s/\",//'
+}
 
 sort_versions() {
   sed 'h; s/[+-]/./g; s/.p\([[:digit:]]\)/.z\1/; s/$/.z/; G; s/\n/ /' |
