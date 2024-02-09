@@ -22,6 +22,7 @@ _install_crane() {
 
   echo "Unpacking crane to bin directory"
   tar -C "${_install_path}/bin" -zxf "${ASDF_DOWNLOAD_PATH}/${_artifact}" crane
+  tar -C "${_install_path}/bin" -zxf "${ASDF_DOWNLOAD_PATH}/${_artifact}" krane
 
   chmod +x "${_install_path}"/bin
 }
